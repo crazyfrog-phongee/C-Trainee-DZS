@@ -6,7 +6,7 @@ CC := gcc
 # when excuting make, compile all exe's
 all: clean-all 
 	@echo "$(TITLE_COLOR)\n***** COMPILING *****$(NO_COLOR)"
-	$(CC) -o bin/test test_final.c $(FLAGS)
+	$(CC) -o bin/test nest_struct.c $(FLAGS)
 	
 # do not look for files called clean, clean-all or this will be always a target
 .PHONY: clean-all 

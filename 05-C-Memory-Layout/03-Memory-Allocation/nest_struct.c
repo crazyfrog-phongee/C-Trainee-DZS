@@ -22,7 +22,6 @@ int main()
         printf("Cannot allocate memory\n");
         exit(EXIT_FAILURE);
     }
-
     person->ads = (struct address *)malloc(sizeof(struct address));
     if (person->ads == NULL)
     {
@@ -31,13 +30,14 @@ int main()
         free(person);
         exit(EXIT_FAILURE);
     }
-
-    person->ads->code = 123;
+    person->ads->code = 0x123;
+    printf("person: %p\n", person);
+    printf("person->ads: %p\n", person->ads);
     printf("Code: %d\n", person->ads->code);
 
     /* De-allocate memory */
     // free(person->ads);
     free(person);
-
+    
     return 0;
 }
