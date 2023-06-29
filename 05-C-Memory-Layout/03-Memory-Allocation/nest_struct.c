@@ -36,8 +36,10 @@ int main()
     printf("Code: %d\n", person->ads->code);
 
     /* De-allocate memory */
-    // free(person->ads);
-    free(person);
+    struct student *temp;
+    temp = person;
+    person = NULL;
+    free(temp);
     
     return 0;
 }

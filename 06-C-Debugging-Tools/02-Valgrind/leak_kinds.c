@@ -29,5 +29,7 @@ int main()
         output_report(i);
     }
     free(banner);
+    // banner = NULL;
+    
     return 0;
 }
