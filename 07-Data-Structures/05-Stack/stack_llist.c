@@ -15,12 +15,25 @@ struct llist
     llist_node_t *head;
 };
 
+
 llist_t *stack_create(llist_t *stack)
 {
     stack = (llist_t *)malloc(sizeof(llist_t));
     stack->head = NULL;
 
     return stack;
+}
+
+int is_empty_stack(const llist_t *stack)
+{
+    assert(NULL != stack);
+
+    if (NULL == stack->head) /* If Stack is empty */
+    {
+        return 1;
+    }
+    /* If Stack is not empty */
+    return 0;
 }
 
 void stack_push(llist_t *stack, int data)
@@ -43,6 +56,78 @@ void stack_push(llist_t *stack, int data)
     stack->head = dummy;
 }
 
+int stack_pop(llist_t *stack)
+{
+    assert(NULL != stack);
+
+    if (1 == is_empty_stack(stack))
+    {
+        printf("Stack is empty\n");
+        return STACK_EMPTY;
+    }
+
+    llist_node_t *dummy;
+    int ret_val;
+
+    dummy = stack->head;
+    ret_val = stack->head->data;
+    stack->head = stack->head->next;
+    
+    free(dummy);
+    dummy = NULL;
+
+    return ret_val;
+}
+
+int stack_peek(const llist_t *stack)
+{
+    assert(NULL != stack);
+
+    if (1 == is_empty_stack(stack))
+    {
+        printf("Stack is empty\n");
+        return STACK_EMPTY;
+    }
+
+    return stack->head->data;
+}
+
+int stack_size(const llist_t *stack)
+{
+    assert(NULL != stack);
+
+    if (1 == is_empty_stack(stack))
+    {
+        return 0;
+    }
+
+    llist_node_t *dummy;
+    int size = 0;
+
+    dummy = stack->head;
+
+    while (NULL != dummy)
+    {
+        size++;
+        dummy = dummy->next;
+    }
+
+    return size;
+}
+
+void stack_free(llist_t *stack)
+{
+    assert(NULL != stack);
+
+    while (NULL != stack->head)
+    {
+        stack_pop(stack);
+    }
+
+    free(stack);
+    stack = NULL;
+}
+
 void print_stack(const llist_t *stack)
 {
     if (NULL == stack)
@@ -50,7 +135,7 @@ void print_stack(const llist_t *stack)
         printf("Stack no longer exists\n");
         return;
     }
-    else if (NULL == stack->head)
+    else if (1 == is_empty_stack(stack))
     {
         printf("Stack is empty\n");
         return;
@@ -59,6 +144,7 @@ void print_stack(const llist_t *stack)
     llist_node_t *dummy;
 
     dummy = stack->head;
+    printf("Stack has %d elements\n", stack_size(stack));
     printf("Stack           ||      Top         ||  After Top       ||  Data\n");
     while (NULL != dummy->next)
     {
