@@ -9,26 +9,27 @@ int main(int argc, char const *argv[])
 {
     stack = stack_create(stack);
     reverse_stack = stack_create(stack);
-    
+
+    /* Pushing value to Stack */
     for (int i = 0; i < 100;)
     {
         stack_push(stack, i);
-        i = i + 5;
-        print_stack(stack);
+        i = i + 10;
     }
+    
+    print_stack(stack);
 
+    /* Before popping */
     for (int i = 0; i < 5; i++)
     {
         printf("Value popping: %d\n", stack_pop(stack));
     }
 
+    /* After popping */
     printf("\nAfter popping:\n");
     print_stack(stack);
 
-    printf("\nCurrent value of the top element of stack: %d\n", stack_peek(stack));
-
-    int val_popping;
-    int current_size;
+    int val_popping, current_size;
 
     current_size = stack_size(stack);
     for (int i = 0; i < current_size; i++)

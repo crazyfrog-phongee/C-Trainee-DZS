@@ -15,7 +15,6 @@ struct llist
     llist_node_t *head;
 };
 
-
 llist_t *stack_create(llist_t *stack)
 {
     stack = (llist_t *)malloc(sizeof(llist_t));
@@ -144,7 +143,7 @@ void print_stack(const llist_t *stack)
     llist_node_t *dummy;
 
     dummy = stack->head;
-    printf("Stack has %d elements\n", stack_size(stack));
+    // printf("Stack has %d elements\n", stack_size(stack));
     printf("Stack           ||      Top         ||  After Top       ||  Data\n");
     while (NULL != dummy->next)
     {

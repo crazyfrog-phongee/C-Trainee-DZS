@@ -11,7 +11,7 @@ int init_stack(stack_t *s)
     return STACK_SUCCESS;
 }
 
-int is_full(const stack_t *s)
+int is_full_stack(const stack_t *s)
 {
     if (s->top == (STACK_SIZE - 1)) /* If Stack is full */
     {
@@ -21,7 +21,7 @@ int is_full(const stack_t *s)
     return 0;
 }
 
-int is_empty(const stack_t *s)
+int is_empty_stack(const stack_t *s)
 {
     if (s->top == -1) /* If Stack is empty */
     {
@@ -31,9 +31,9 @@ int is_empty(const stack_t *s)
     return 0;
 }
 
-int push(stack_t *s, int data)
+int stack_push(stack_t *s, int data)
 {
-    if (1 == is_full(s))
+    if (1 == is_full_stack(s))
     {
         printf("Stack overflow\n");
         return -1;
@@ -45,11 +45,11 @@ int push(stack_t *s, int data)
     return STACK_SUCCESS;
 }
 
-int pop(stack_t *s)
+int stack_pop(stack_t *s)
 {
     int ret_val;
 
-    if (1 == is_empty(s))
+    if (1 == is_empty_stack(s))
     {
         printf("Stack underflow\n");
         return -1;
@@ -60,9 +60,9 @@ int pop(stack_t *s)
     return ret_val;
 }
 
-int peek(const stack_t *s)
+int stack_peek(const stack_t *s)
 {
-    if (1 == is_empty(s))
+    if (1 == is_empty_stack(s))
     {
         printf("Stack underflow\n");
         return -1;

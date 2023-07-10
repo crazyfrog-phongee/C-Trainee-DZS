@@ -8,9 +8,9 @@ all: clean
 # When trying to compile one of the executables, first look for its .c files
 # Then check if the libraries are in the lib folder
 	@echo "$(TITLE_COLOR)\n***** CPPCHECK *****$(NO_COLOR)"
-	cppcheck --enable=all --suppress=missingIncludeSystem main.c stack_llist.c
+	cppcheck --enable=all --suppress=missingIncludeSystem main.c lib/stack_arr.c user_app.c
 	@echo "$(TITLE_COLOR)\n***** COMPILING *****$(NO_COLOR)"
-	$(CC) -g -o bin/test main_stack_llist.c stack_llist.c $(FLAGS)
+	$(CC) -g -o bin/test main.c lib/stack_arr.c user_app.c $(FLAGS)
 # do not look for files called clean, clean-all or this will be always a target
 .PHONY: clean clean-all 
 
