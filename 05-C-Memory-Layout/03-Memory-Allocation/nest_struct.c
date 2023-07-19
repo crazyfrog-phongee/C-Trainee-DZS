@@ -37,6 +37,7 @@ int main()
 
     /* De-allocate memory */
     struct student *temp;
+    
     temp = person;
     person = NULL;
     free(temp);

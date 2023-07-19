@@ -4,13 +4,13 @@
 
 int main(int argc, char const *argv[])
 {
-    int *ptr;
+    char *ptr;
 
     /* The current limit of the Heap is referred to as the program break */
     printf("Program break: %p\n", sbrk(0));
 
     /* Dynamically allocated memory using malloc()/realloc() */
-    ptr = (int *)malloc(100000000 * sizeof(int));
+    ptr = (char *)malloc(25 * sizeof(char));
     // ptr = (int *)realloc(NULL, 5 * sizeof(int));
 
     /* Checking if the memory has been successfully allocated */
@@ -23,21 +23,15 @@ int main(int argc, char const *argv[])
     {
         printf("Memory successfully allocated using malloc()/realloc() \n");
         /* Get the elements of the array */
-        // for (int i = 0; i < 5; ++i) 
-        // {
-        //     ptr[i] = i + 1;
-        // }
- 
-        // /* Print the elements of the array */
-        // printf("The elements of the array are: ");
-        // for (int i = 0; i < 5; ++i) 
-        // {
-        //     printf("%d ", ptr[i]);
-        // }
-        // printf("\n");
-
     }
 
+
+    printf("Value of pointer: %p\n", ptr);
+    
+    for (int i = 1; i < 16; i++)
+    {
+        printf("%p  %d\n", (ptr - i), *(ptr - i));
+    }
     free(ptr); /* ptr becomes Dangling pointer */
     if (ptr != NULL)
     {
